@@ -3,9 +3,9 @@
 ## For the beamer
 
 We decided to separate the beamer into 3 parts :
-- Fanchon will do the end of the previous CM and the first part of our CM,
-- Cassandre will do the middle part corresponding to the matrix model,
-- Cherif will do the last part of it.
+- Fanchon did the end of the previous CM and the first part of our CM,
+- Cassandre did the middle part corresponding to the matrix model,
+- Cherif did the last part of it.
 
 ## For the two applications
 
