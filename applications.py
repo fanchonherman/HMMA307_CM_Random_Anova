@@ -7,11 +7,10 @@ In short: Usage of random Anova on two datasets.
 # Packages needded
 ###################
 
+import pandas as pd
+
 ##################
 # Download datasets
 ##################
 
-cheese <- read.table("http://stat.ethz.ch/~meier/teaching/data/cheese.dat", header = TRUE)
-cheese[, "rater"] <- factor(cheese[, "rater"])
-str(cheese)
 

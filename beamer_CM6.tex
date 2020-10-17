@@ -114,10 +114,79 @@ Mixed models can be used in practice to deal with disordered data and allow us t
 
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Matrix model}
+\label{sub:matrix}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%% MATRIX MODEL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Matrix Model}
+\mytheorem{Model equation}
+{\[y=\mu^* \bbI_n+ ZA+\varepsilon\]}
+\medskip
+
+ \begin{itemize} 
+        \item $\mu^* \in \bbR$, fixed effect
+        \item $Z = \begin{bmatrix} \bbI_{C_1} \  \cdots \  \bbI_{C_J} \end{bmatrix} \in \bbR^{n \times J}$, design matrix, 
+        \item $C_1\sqcup \ \cdots \ \sqcup C_J = \llbracket 1,n \rrbracket$, classes / modalities,
+        \item $A = \begin{pmatrix}
+                    A_1 \ \cdots \ A_J
+                    \end{pmatrix}^T \in \bbR^J, \ 
+        A \sim \cN(0, \sigma_A^2 \ I_{d_J}), \text{ } \sigma_A^2>0$, random matrix,
+        \item $\varepsilon \sim \cN(0,\sigma_{\varepsilon}^2) \text{ , } \sigma_{\varepsilon}^2>0,$ the noise,
+        \item \[ ZA = \sum_{j=1}^J A_j \bbI_{C_j} \in \bbR^n. \]
+    \end{itemize}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%% VARIANCE CALCULATE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Variance calculate}
+
+    \begin{itemize} 
+        \item We have that, $\bbV(ZA) = \underbrace{Z}_{n\times J} \underbrace{\bbV(A)}_{J\times J} \  \underbrace{Z^T}_{J\times n} = \sigma^2_A Z Z^T \ \in \bbR^{n\times n}$, 
+        \item Where, \[ ZZ^T = \begin{bmatrix} \bbI_{C_1}\  \cdots \ \bbI_{C_J} \end{bmatrix} \begin{bmatrix}
+        \bbI_{C_1}^T\\
+        \vdots \\
+        \bbI_{C_J}^T
+        \end{bmatrix} = \sum_{j=1}^J \bbI_{C_j} \bbI_{C_j}^T, \]
+        \item Then, $\bbV(y) = \sigma^2_A ZZ^T + \sigma^2_{\varepsilon} I_{d_n}$.
+    \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%% REMINDER %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Reminder for the statistical model}
+
+    \begin{itemize} 
+        \item The model : $y_{ij} = \mu^* + A_j + \varepsilon_{ij}$, 
+        \item We have that \[ \overline{y_{:j}} = \frac{1}{n_j}\sum_{i \in C_j} y_{ij}, \] 
+        \item So, $\bbV(\overline{y_{:j}}) = \sigma_
+        A^2 + \frac{\sigma_{\varepsilon}^2}{n_j} := \tau_j^2$ \ and \  $\bbE(\overline{y_{:j}}) = \mu^* $ without bias.
+    \end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%% MU ESTIMATOR %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{$\mu^*$-estimator}
+\mytheorem{Formula}
+{\[ \hat{\mu} = \sum_{j=1}^J \omega_j \overline{y_{:j}} , \hspace{0.3cm}  \text{with} \hspace{0.2cm} \omega_j \propto \frac{1}{\bbV(\overline{y_{:j}})} \text{the weighting}. \]}
+\medskip
+
+\vspace{1cm}
+\underline{\textbf{Remark :}}\\
+In balance case, we have :
+\begin{itemize}
+    \item $n_j = I$, as we already know that $n = IJ$,
+    \item So we obtain, \[ \hat{\mu}=\frac{I}{J}\sum_{j=1}^J\overline{y_{:j}}. \]
+\end{itemize}
+     
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
