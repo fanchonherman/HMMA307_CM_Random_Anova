@@ -96,4 +96,51 @@ plt.tight_layout()
 # Modeling individual means with random intercepts
 #####################################################
 
+# the formula is pitch=int+politeness+gender+(1|subject)+\varepsilon
 
+# idea for the different participant means across conditions
+df_politeness.groupby('subject')[['pitch']].aggregate(lambda x: x.mean())
+
+# estimation of the means for each participant including a random intercept
+# for each subject
+md1 = smf.mixedlm("pitch ~ 1", df_politeness, groups=df_politeness['subject'])
+# lmer(pitch ~ (1 | subject), data = d)
+md1f = md1.fit()
+print(md1f.summary())
+
+# we can see that the mean pitch is 193.025.
+
+#####################################################
+# Including fixed effects
+#####################################################
+
+# recoding of the variable gender and condition.
+df_politeness["gender"].replace({'F': 1, 'M': -1}, inplace=True)
+df_politeness["condition"].replace({'inf': 1, 'pol': -1}, inplace=True)
+
+# include a model with condition and gender and a random intercept
+# for each subject.
+md2 = smf.mixedlm("pitch ~ condition + gender", df_politeness,
+                  groups=df_politeness['subject'])
+md2f = md2.fit()
+print(md2f.summary())
+
+# we can see that the mean pitch is 192.883.
+# we noticed that pitch is higher for informal than polite.
+# we noticed that pitch is higher for females than males.
+
+# evaluation of the model
+# logLikelihood = logLik(res2)
+# deviance = -2*logLikelihood[1]; deviance
+
+
+#####################
+# Random Slopes
+#####################
+
+# add random slopes
+
+md3 = smf.mixedlm("pitch ~ condition + gender", df_politeness,
+                  groups=df_politeness['subject'], re_formula='~condition')
+md3f = md3.fit()
+print(md3f.summary())
