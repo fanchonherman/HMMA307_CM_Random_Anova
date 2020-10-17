@@ -1,0 +1,131 @@
+\documentclass[unknownkeysallowed]{beamer}
+\usepackage[french,english]{babel}
+\usepackage{beamer_js}
+\usepackage{shortcuts_js}
+\usepackage{etex}
+\usepackage{csquotes}
+\nocite{*}
+\addbibresource{biblio.bib}
+
+% importer bibilo !!!!!!!!!!!!!! voir projet file attente
+\begin{document}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%             Headers               %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\bigskip
+\bigskip
+\begin{center}{
+\LARGE\color{marron}
+\textbf{HMMA307 : \\ Advanced Linear Modeling}
+\textbf{ }\\
+\vspace{0.5cm}
+}
+
+\color{marron}
+\textbf{Chapter 5 : Random Anova}
+\end{center}
+
+\vspace{0.5cm}
+
+\begin{center}
+\textbf{Fanchon Herman \ Cassandre Lepercque \ Mo} \\
+\vspace{0.1cm}
+\url{https://github.com/fanchonherman/HMMA307_CM_Random_Anova}\\
+\vspace{0.5cm}
+Université de Montpellier \\
+\end{center}
+
+\centering
+\includegraphics[width=0.13\textwidth]{Logo}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%       PLAN      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Table of Contents}
+\tableofcontents[hideallsubsections]
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Motivation}
+\label{sec:motiv}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Motivation}
+Mixed models can be used in practice to deal with disordered data and allow us to use all of our data. Indeed, we can have different grouping factors but also small sample sizes. So, mixed models can process the data even when we have small sample sizes, structured data, and many covariates to fit.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Statistical model}
+\label{sec:model}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Statistical model}
+\mytheorem{Model equation}
+{\[y_{ij}=\mu^*+ A_j+\varepsilon_{ij}\]}
+
+\medskip
+
+ \begin{itemize}
+        \item $\mu^* \in \bbR$, fixed effect,
+        \item $A_j \overset{\iid}{\sim} \mathcal{N}(0, \sigma_A^2), \text{ } \sigma_A^2>0, \text{ } \forall j \in \llbracket 1,J \rrbracket$, random effect,
+        \item $\varepsilon_{ij} \overset{\iid}{\sim} \mathcal{N}(0,\sigma_{\varepsilon}^2) \text{ } \sigma_{\varepsilon}^2>0, \text{ } \forall i \in \llbracket 1,I \rrbracket \text{ ,} \forall j \in \llbracket 1,J \rrbracket$ the noise,
+        \item $A_j \perp \!\!\! \perp \varepsilon_{ij} \text{ ,}\forall i,j$,
+        \item $n=\sum_{j=1}^{J} n_j$ and $n_j$ the number of observations of the modality $J$.
+    \end{itemize}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Esperance and covariance}
+\begin{itemize}
+    \item $\bbE[y_{ij}]=\mu^* $, 
+    \item $\bbV(y_{ij})=\sigma_A^2 + \sigma_{\varepsilon}^2$,
+    \item $\cov(y_{ij},y_{i'j'})=\sigma_A^2\delta_{jj'} + \sigma_{\varepsilon}^2\delta_{ii'}\delta_{jj'}$,
+\end{itemize}
+
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conclusion}
+\label{sec:conclusion}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\end{document}
