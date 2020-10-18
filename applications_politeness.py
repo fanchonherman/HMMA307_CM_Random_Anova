@@ -238,8 +238,33 @@ p_value = 1.0 - scipy.stats.chi2.cdf(dev_diffb, 1)
 print('Chi square =', np.round(dev_diffb, 3), '(df=1)',
       'p=', np.round(p_value, 6))
 
+
 # compare the AICs
 
+# AIC for the model md5f
+print("model's AIC : %.4f" % (dev1b + 2*(4+1)))
+# total parameters = 4 + 1 for estimated residual
+
+# AIC for the model md5b
+print("model's AIC : %.4f" % (dev0b + 2*(3+1)))
+# total parameters = 3 +1 for estimated residual
+
+# difference of the AIC for each model
+print("the difference of AIC is :  %.4f" %
+      np.round((dev0b + 2*(3+1))-(dev1b + 2*(4+1)), 3))
+
+# mixed-lm an other example
+md5c = smf.mixedlm('pitch ~ condition + gender',
+                   groups=df_politeness['subject'], data=df_politeness)
+md5cf = md5.fit(reml=False)
+
+# AIC calculate
+dev0c = (-2) * md5cf.llf
+AIC_c = dev0c + 2*(4+1)
+
+# BIC calculate
+# BIC formula : -2 * loglikehood + (number of params + 1) * ln(numbers of obs)
+BIC_c = (-2) * (md5cf.llf) + 5 * np.log(83)
 
 
 ################
@@ -254,6 +279,3 @@ sns.catplot(x='scenario', y="pitch",
 plt.title("Pitch by scenario")
 plt.legend(loc='best')
 plt.tight_layout()
-
-# mixed-lm
-
