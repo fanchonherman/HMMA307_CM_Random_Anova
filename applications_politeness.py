@@ -13,8 +13,10 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import statsmodels.api as sm
 import statsmodels.formula.api as smf
+from statsmodels.formula.api import ols
 import numpy as np
 import seaborn as sns
+import scipy
 
 ################################
 # Download datasets
@@ -144,3 +146,108 @@ md3 = smf.mixedlm("pitch ~ condition + gender", df_politeness,
                   groups=df_politeness['subject'], re_formula='~condition')
 md3f = md3.fit()
 print(md3f.summary())
+
+# anova to do
+
+######################
+# Testing signifiance
+######################
+
+
+#####################
+# Getting p-values
+# ~~~~~~~~~~~~~~~~~~
+
+md2b = md2.fit(reml=True)
+md3b = md3.fit(reml=True)
+print(md3b.summary())
+
+# comparing model outputs
+
+# anova = sm.stats.anova_lm(md2)
+# anova_b = sm.stats.anova_lm(md2b)
+
+#####################
+# Model comparison
+# ~~~~~~~~~~~~~~~~~~
+
+md4 = smf.mixedlm("pitch ~  gender", df_politeness,
+                  groups=df_politeness['subject'])
+md4f = md4.fit(reml=False)
+print(md4f.summary())
+
+md4b = smf.mixedlm("pitch ~ condition + gender", df_politeness,
+                   groups=df_politeness['subject'])
+md4bf = md4b.fit(reml=False)
+print(md4bf.summary())
+
+# anova(md4f, md4bf)
+
+# The likelihood ratio test essentially tells us how much more likely the data
+# is under a more complex model than under the simpler model
+# D =-2* ln(likelihood for simple model) + 2*ln(likelihood for complex model)
+# the distribution of D is approximately chi_2 with df2-df1 degrees of freedom
+
+dev1 = (-2)*md4bf.llf  # deviance complex model
+dev0 = (-2)*md4f.llf  # deviance simpler model
+dev_diff = dev0 - dev1
+print("Stat. of the likehood ratio : %.4f " % (dev_diff))
+
+# params md4bf : 3 fixed + 1 random
+# params md4f : 2 fixed + 1 random
+# donc df_diff vaut 1
+
+pvalue = 1.0 - scipy.stats.chi2.cdf(dev_diff, 1)
+
+print('Chi square =', np.round(dev_diff, 3), '(df=1)',
+      'p=', np.round(pvalue, 6))
+
+# we have compared 2 nested models
+# one without condition
+# other with condition
+# we conclude that inclusion of condition is warranted in our model since
+# it significantly improves model fit, χ^2(1)=8.79, p<0.01
+
+#############
+# REML vs ML
+#############
+
+md5 = smf.mixedlm("pitch ~  condition + gender", df_politeness,
+                  groups=df_politeness['subject'])
+md5f = md5.fit(reml=False)
+md5b = ols('pitch ~ condition + gender', data=df_politeness).fit()
+
+# anova(res5b, res5) # doesn't work!
+
+dev1b = (-2)*md5f.llf
+dev0b = (-2)*md5b.llf
+dev_diffb = dev0b - dev1b
+print(dev_diffb)
+
+# # params md5f : 3 fixed + 1 random
+# params md5b : 3 fixed
+# donc df_diffb vaut 1
+
+p_value = 1.0 - scipy.stats.chi2.cdf(dev_diffb, 1)
+
+print('Chi square =', np.round(dev_diffb, 3), '(df=1)',
+      'p=', np.round(p_value, 6))
+
+# compare the AICs
+
+
+################
+# Item effects
+################
+
+# boxplot
+plt.figure()
+sns.catplot(x='scenario', y="pitch",
+            data=df_politeness, kind="box", legend=False,
+            aspect=2)
+plt.title("Pitch by scenario")
+plt.legend(loc='best')
+plt.tight_layout()
+
+# mixed-lm
+
