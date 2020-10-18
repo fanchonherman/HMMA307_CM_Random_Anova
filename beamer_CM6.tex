@@ -185,7 +185,21 @@ In balance case, we have :
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\visible<2->{
+\begin{alertblock}{Theorem}
+Let $X_1$,...,$X_n$ independent random variables. We suppose that $E(X_1)=....=E(X_n)= \mu^{*} $
+Among the linear unbiased estimators in $X_1$, ....,$X_n$ of $\mu^{*}$, the minimal variance estimator is denoted by $\hat{\mu}$ and is worth:
+$$\hat{\mu}=\sum_{i=1}^{n}\frac{X_{i}/var(X_{i})}{\sum_{i'=1}^{n}1/var(X_{i})}$$
+\end{alertblock}
+}
 
+\begin{itemize}\setlength{\itemsep}{5pt}
+\visible<1->{\item  \textbf{Demo}}:\\
+We have $$ min\limits_{(\alpha_{1},...,\alpha_{n})\in \mathbb{R}^{n}} Var(\sum\limits_{i=1}^{n}\alpha_{i}X_{i}) $$
+u.c: \sum\limits_{i=1}^{n}\alpha_{i}=1
+\end{itemize}
+\end{frame}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
