@@ -131,10 +131,15 @@ print(md2f.summary())
 # we noticed that pitch is higher for informal than polite.
 # we noticed that pitch is higher for females than males.
 
-# evaluation of the model
-# logLikelihood = logLik(res2)
-# deviance = -2*logLikelihood[1]; deviance
+# more model informations
+# deviance=−2∗log likelihood
+# AIC=deviance+2∗(p+1)
 
+dev_model = (-2)*md2f.llf
+print("model's deviance : %.4f" % (dev_model))
+p = 4  # number of parameters = 3 (fixed) + 1 (random)
+print("model's AIC : %.4f" % (dev_model + 2*(p+1)))
+# total parameters = 4 + 1 for estimated residual
 
 #####################
 # Random Slopes
@@ -149,9 +154,9 @@ print(md3f.summary())
 
 # anova to do
 
-######################
+#######################
 # Testing signifiance
-######################
+#######################
 
 
 #####################
@@ -234,6 +239,7 @@ print('Chi square =', np.round(dev_diffb, 3), '(df=1)',
       'p=', np.round(p_value, 6))
 
 # compare the AICs
+
 
 
 ################
