@@ -184,8 +184,62 @@ In balance case, we have :
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%   THEOREM    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\visible<1->{
+\begin{alertblock}{Theorem}
+Let $X_1$,...,$X_n$ independent random variables. We suppose that $E(X_1)=....=E(X_n)= \mu^{*} $
+Among the linear unbiased estimators in $X_1$, ....,$X_n$ of $\mu^{*}$, the minimal variance estimator is denoted by $\hat{\mu}$ and is worth:
+$$\hat{\mu}=\sum_{i=1}^{n}\frac{X_{i}/var(X_{i})}{\sum_{i'=1}^{n}1/var(X_{i})}$$
+\end{alertblock}
+}
 
+\begin{itemize}\setlength{\itemsep}{5pt}
+\visible<1->{\item  \textbf{Demo}}:
+We have $$ min\limits_{(\alpha_{1},...,\alpha_{n})\in \mathbb{R}^{n}} Var(\sum\limits_{i=1}^{n}\alpha_{i}X_{i}) $$
+u.c: \sum\limits_{i=1}^{n}\alpha_{i}=1
+
+$$E(\sum\limits_{i=1}^{n}\alpha_{i}X_{i}) = \mu^{*}$$
+$$Var(\sum\limits_{i=1}^{n}\alpha_{i}X_{i})=\sum\limits_{i=1}^{n}\alpha_{i}^{2}Var(X_{i})$$
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+Minimize the last expression amounts to minimize this expression: 
+    $$ min\limits_{(\alpha_{1},...,\alpha_{n})\in \mathbb{R}^{n}} \sum\limits_{i=1}^{n}\alpha_{i}^{2}Var(X_{i}) \quad u.c \quad  \sum\limits_{i=1}^{n}\alpha_{i}=1 $$
+\begin{itemize}\setlength{\itemsep}{5pt}
+\visible<1->{\item \textbf{Lagrangian} : $$\mathcal{L}(\alpha,\lambda)=\sum\limits_{i=1}^{n}\alpha_{i}^{2}Var(X_{i}) + \lambda (\sum\limits_{i=1}^{n}\alpha_i -1) $$}
+\end{itemize}
+Resolution of the optimization system:
+\[\nabla \mathcal{L}(\hat\alpha,\hat\lambda)=0\]
+\[
+\begin{aligned}
+\begin{cases}
+&  \frac{\partial \mathcal{L}}{\partial \alpha}=0 \\
+&  \frac{\partial \mathcal{L}}{\partial \alpha_{i_0}}=0\ \forall i_0 
+\end{cases}
+\quad&\Longleftrightarrow\quad
+\begin{cases}
+&  \sum\limits_{i=1}^{n}\hat{\alpha}_i=1 \\
+&  2\hat\alpha_{i_0}Var(x_{i_0} + \hat\lambda =0, \forall{i_0}  \\
+\end{cases}\\
+& \Longleftrightarrow\quad
+\begin{cases}
+&  \hat\alpha_{i_0}=\frac{-\hat\lambda}{2Var(x_{i_0}} \\
+& \sum\limits_{i_{0}=1}^{n}\hat{\alpha}_i_{0}=1=\frac{-\hat\lambda}{2}(\sum_{i_{0}=1}^{n}\frac{1}{Var(x_{i_0})}) \\
+
+\end{cases}
+\end{aligned}
+\]
+\end{frame}
+\begin{frame}
+    Finally, $$ \hat \lambda = -2(\frac{1}{\sum_{i=1}^{n}1/var(X_{i})})$$
+    
+     $$\hat\alpha_{i_0}=\frac{\frac{1}{Var(X_i_0)}}{\sum_{i=1}^{n}1/var(X_{i})} 
+    \Longrightarrow \hat\mu = \sum_{j=1}^{J}\alpha_{j}\bar{y_{ij}}$$
+\end{frame}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
