@@ -271,6 +271,7 @@ print("model's AIC : %.4f" % (dev0b + 2*(3+1)))
 
 # the AIC of the model 5 is smaller, so the model md5 is better than other one
 
+
 # difference of the AIC for each model
 print("the difference of AIC is :  %.4f" %
       np.round((dev0b + 2*(3+1))-(dev1b + 2*(4+1)), 3))
@@ -313,6 +314,5 @@ sns.catplot(x='scenario', y="pitch",
 plt.title("Pitch by scenario")
 plt.legend(loc='best')
 plt.tight_layout()
-
 # we can see that the scenario 4 get pitch values higher than the others
 
