@@ -1,5 +1,5 @@
 """
-@authors: Fanchon Herman, Cassandre Lepercque and ..
+@authors: Cherif Amghar
 In short: Usage of random Anova on two datasets.
 """
 
