@@ -37,10 +37,15 @@ print(df_cheese)
 ######################### data visualisation #############################
 
 #We can easily visualize this data with an interaction plot.
-#We use the package ggplot2 to get a more appealing plot compared to the function interaction by rater.
+#We use the function ggplot to get a more appealing plot compared to the function interaction by rater.
 
 ggplot(df_cheese, aes(x = df_cheese.cheese, y = df_cheese.y, group = interaction(df_cheese.background, df_cheese.rater),
                    color = df_cheese.rater)) + stat_summary(df_cheese.y = mean, geom = "line")
+
+#We use the function ggplot to get a more appealing plot compared to the function interaction by background.
+
+ggplot(df_cheese, aes(x = df_cheese.cheese, y = df_cheese.y, group = interaction(df_cheese.background, df_cheese.rater),
+                   color = df_cheese.background)) + stat_summary(df_cheese.y = mean, geom = "line")
 
 ######We have main effects and the interaction for the fixed effects of background and cheese type: background * cheese
 #####a random effect per rater (nested in background): (1 | rater:background)
@@ -54,7 +59,7 @@ mode.summary()
 ###########  ANOVA  ##############
 #We get an ANOVA table with p-values for the fixed effects, after fiting an ols model.
 
-model = ols('y ~ C(background, rater, cheese)', data=df_cheese).fit(
+model = ols('y ~ C(background, rater, cheese)', data=df_cheese).fit()
 anova_model  =  sm.stats.anova_lm ( model )   
 
 ###We see that the interaction is not significant but there is a significant effect of background and cheese type. This is what we basically already observed in the interaction plot. There, the profiles were quite parallel, but raters with urban background rated higher on average than those with rural background.
