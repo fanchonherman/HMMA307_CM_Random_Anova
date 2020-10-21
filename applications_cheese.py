@@ -1,3 +1,12 @@
+"""
+@authors: Cherif Amghar
+In short: Usage of random Anova on the dataset politeness.
+"""
+
+################################
+# Packages needded
+#################################
+
 from download import download
 from statsmodels.formula.api import ols
 from plotnine import *
